@@ -136,6 +136,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 			throw new PriorityQueueEmptyException("Cannot get front of empty Queue!");
 		} else {
 			return heap[0];
+			
 		}
 	}
 
