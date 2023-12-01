@@ -114,27 +114,32 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 
 	@Override
 	public T dequeue() throws PriorityQueueEmptyException {
-		if (isEmpty() || size < 2) {
+		if (isEmpty()) {
 			throw new PriorityQueueEmptyException("Cannot dequeue empty Queue!");
 		} else {
-			T dequeuedElement = heap[0];// the root element of the heap
-			heap[0] = heap[size - 1];
-			heap[size - 1] = null;
-			size--;
-			if (size > 1) {
-				reHeapDown(0);
+			T dequeuedElement = heap[0];
+			if (size == 1) {
+				heap[0] = null;
+				size--;
+			} else {
+				heap[0] = heap[size - 1];
+				heap[size - 1] = null;
+				size--;
+				if (size > 1) {
+					reHeapDown(0);
+				}
 			}
 			return dequeuedElement;
 		}
 	}
 
 	@Override
-	public T getFront() throws PriorityQueueEmptyException{
+	public T getFront() throws PriorityQueueEmptyException {
 		if (isEmpty()) {
 			throw new PriorityQueueEmptyException("Cannot get front of empty Queue!");
 		} else {
 			return heap[0];
-			
+
 		}
 	}
 
