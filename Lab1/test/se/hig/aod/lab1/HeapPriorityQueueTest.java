@@ -2,7 +2,6 @@ package se.hig.aod.lab1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,11 +13,10 @@ import org.junit.jupiter.api.Test;
  */
 class HeapPriorityQueueTest {
 
-	static final Integer[] INT_FIXTURE = {1,9,2,8,3,7,4,6,5,5};
+	static final Integer[] INT_FIXTURE = { 1, 9, 2, 8, 3, 7, 4, 6, 5, 5 };
 
 	HeapPriorityQueue<Integer> nonEmptyQueue;
 	HeapPriorityQueue<Integer> emptyQueue;
-	
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -49,35 +47,35 @@ class HeapPriorityQueueTest {
 	}
 
 	@Test
-	void testIsEmpty(){
-		assertFalse(nonEmptyQueue.isEmpty(),"intQueue should not be empty from start");
-		assertTrue(emptyQueue.isEmpty(),"emptyQueue should be empty from start");
+	void testIsEmpty() {
+		assertFalse(nonEmptyQueue.isEmpty(), "intQueue should not be empty from start");
+		assertTrue(emptyQueue.isEmpty(), "emptyQueue should be empty from start");
 	}
-	
+
 	@Test
 	void testEnqueue() throws PriorityQueueFullException, PriorityQueueEmptyException {
 		int size = emptyQueue.size();
 		assertEquals(size, emptyQueue.size());
 		Integer nbr = 1;
 		emptyQueue.enqueue(nbr);
-		assertEquals(size+1, emptyQueue.size());
+		assertEquals(size + 1, emptyQueue.size());
 	}
-	
+
 	@Test
 	void testDequeue() throws PriorityQueueFullException, PriorityQueueEmptyException {
 		int size = nonEmptyQueue.size();
 		assertEquals(size, nonEmptyQueue.size());
 		nonEmptyQueue.dequeue();
-		assertEquals(size-1, nonEmptyQueue.size());
+		assertEquals(size - 1, nonEmptyQueue.size());
 	}
-	
+
 	@Test
 	void testGetFront() throws PriorityQueueEmptyException {
 		assertEquals(9, nonEmptyQueue.getFront());
 	}
-	
+
 	@Test
-	void testDequeueWholeQueue() {
+	void testDequeueWholeQueue() throws PriorityQueueEmptyException {
 		for (Integer integer : INT_FIXTURE) {
 			nonEmptyQueue.dequeue();
 		}
