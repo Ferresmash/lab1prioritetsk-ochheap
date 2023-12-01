@@ -7,7 +7,7 @@ package se.hig.aod.lab1;
  * 
  * @param <T> Data type of elements stored in the queue.
  */
-public class HeapPriorityQueue<T extends Comparable<? super T>> implements PriorityQueue<T>  {
+public class HeapPriorityQueue<T extends Comparable<? super T>> implements PriorityQueue<T> {
 
 	private T[] heap;
 	private int size;
@@ -18,7 +18,6 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 		clear();
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
@@ -72,11 +71,11 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	private void reHeapDown(int currentIndex) {
-		if(leftChild(currentIndex) > maxSize) {
+		if (leftChild(currentIndex) > maxSize) {
 			return;
 		}
-		if(heap[rightChild(currentIndex)] == null) {
-			if(heap[currentIndex].compareTo(heap[leftChild(currentIndex)]) < 0) {
+		if (heap[rightChild(currentIndex)] == null) {
+			if (heap[currentIndex].compareTo(heap[leftChild(currentIndex)]) < 0) {
 				T temp = heap[leftChild(currentIndex)];
 				heap[leftChild(currentIndex)] = heap[currentIndex];
 				heap[currentIndex] = temp;
@@ -84,15 +83,15 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 			}
 			return;
 		}
-		if(heap[leftChild(currentIndex)].compareTo(heap[rightChild(currentIndex)]) > 0) {
-			if(heap[currentIndex].compareTo(heap[leftChild(currentIndex)]) < 0) {
+		if (heap[leftChild(currentIndex)].compareTo(heap[rightChild(currentIndex)]) > 0) {
+			if (heap[currentIndex].compareTo(heap[leftChild(currentIndex)]) < 0) {
 				T temp = heap[leftChild(currentIndex)];
 				heap[leftChild(currentIndex)] = heap[currentIndex];
 				heap[currentIndex] = temp;
 				reHeapDown(leftChild(currentIndex));
 			}
-		}else {
-			if(heap[currentIndex].compareTo(heap[rightChild(currentIndex)]) < 0) {
+		} else {
+			if (heap[currentIndex].compareTo(heap[rightChild(currentIndex)]) < 0) {
 				T temp = heap[rightChild(currentIndex)];
 				heap[rightChild(currentIndex)] = heap[currentIndex];
 				heap[currentIndex] = temp;
@@ -102,7 +101,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	@Override
-	public void enqueue(T newElement){
+	public void enqueue(T newElement) {
 		if (isFull()) {
 			throw new RuntimeException("Heap is full!");
 		}
@@ -114,26 +113,27 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	@Override
-	public T dequeue(){
+	public T dequeue() {
 		if (isEmpty()) {
 			throw new RuntimeException("Cannot dequeue empty Queue!");
 		} else {
 			T dequeuedElement = heap[0];// the root element of the heap
 			// TODO Code that moves the last element in the heap to the root of the heap
-			heap[0] = heap[size-1];
-			heap[size-1] = null;
+			heap[0] = heap[size - 1];
+			heap[size - 1] = null;
 			size--;
 			// TODO reHeapDown for the new root of the heap
-			reHeapDown(0);
-			
+			if (size > 1) {
+				reHeapDown(0);
+			}
 			return dequeuedElement;
 		}
 	}
 
 	@Override
-	public T getFront(){
+	public T getFront() throws PriorityQueueEmptyException {
 		if (isEmpty()) {
-			throw new RuntimeException("Cannot get front of empty Queue!");
+			throw new PriorityQueueEmptyException("Cannot get front of empty Queue!");
 		} else {
 			return heap[0];
 		}
