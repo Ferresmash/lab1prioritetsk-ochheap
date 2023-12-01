@@ -101,9 +101,9 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	@Override
-	public void enqueue(T newElement) {
+	public void enqueue(T newElement) throws PriorityQueueFullException {
 		if (isFull()) {
-			throw new RuntimeException("Heap is full!");
+			throw new PriorityQueueFullException("Heap is full!");
 		}
 		heap[size] = newElement;
 		reHeapUp(size);
@@ -113,9 +113,9 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	@Override
-	public T dequeue() {
+	public T dequeue() throws PriorityQueueEmptyException {
 		if (isEmpty()) {
-			throw new RuntimeException("Cannot dequeue empty Queue!");
+			throw new PriorityQueueEmptyException("Cannot dequeue empty Queue!");
 		} else {
 			T dequeuedElement = heap[0];// the root element of the heap
 			// TODO Code that moves the last element in the heap to the root of the heap
@@ -131,9 +131,9 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	@Override
-	public T getFront(){
+	public T getFront() throws PriorityQueueEmptyException{
 		if (isEmpty()) {
-			throw new RuntimeException("Cannot get front of empty Queue!");
+			throw new PriorityQueueEmptyException("Cannot get front of empty Queue!");
 		} else {
 			return heap[0];
 		}
