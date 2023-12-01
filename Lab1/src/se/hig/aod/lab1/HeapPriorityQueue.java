@@ -131,7 +131,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	@Override
-	public T getFront() throws PriorityQueueEmptyException {
+	public T getFront(){
 		if (isEmpty()) {
 			throw new RuntimeException("Cannot get front of empty Queue!");
 		} else {
