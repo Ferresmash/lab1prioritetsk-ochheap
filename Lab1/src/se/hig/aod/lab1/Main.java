@@ -10,12 +10,7 @@ public class Main {
 		
 		HeapPriorityQueue<Integer> heap = new HeapPriorityQueue<Integer>(7);
 		for (Integer integer : INT_FIXTURE) {
-			try {
 				heap.enqueue(integer);
-			} catch (PriorityQueueFullException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 	
