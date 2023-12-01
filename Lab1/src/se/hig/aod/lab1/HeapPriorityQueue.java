@@ -102,7 +102,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	@Override
-	public void enqueue(T newElement) throws PriorityQueueFullException {
+	public void enqueue(T newElement){
 		if (isFull()) {
 			throw new RuntimeException("Heap is full!");
 		}
