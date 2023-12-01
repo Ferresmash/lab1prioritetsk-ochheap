@@ -114,15 +114,13 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 
 	@Override
 	public T dequeue() throws PriorityQueueEmptyException {
-		if (isEmpty()) {
+		if (isEmpty() || size < 2) {
 			throw new PriorityQueueEmptyException("Cannot dequeue empty Queue!");
 		} else {
 			T dequeuedElement = heap[0];// the root element of the heap
-			// TODO Code that moves the last element in the heap to the root of the heap
 			heap[0] = heap[size - 1];
 			heap[size - 1] = null;
 			size--;
-			// TODO reHeapDown for the new root of the heap
 			if (size > 1) {
 				reHeapDown(0);
 			}
