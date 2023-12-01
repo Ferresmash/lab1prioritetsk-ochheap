@@ -82,20 +82,4 @@ class HeapPriorityQueueTest {
 			nonEmptyQueue.dequeue();
 		}
 	}
-	
-	
-	// TODO ADD MORE TESTS
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 *
-	 */
 }

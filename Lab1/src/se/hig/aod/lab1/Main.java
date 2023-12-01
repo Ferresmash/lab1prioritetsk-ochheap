@@ -7,23 +7,16 @@ public class Main {
 
 	private static final Integer[] INT_FIXTURE = { 1, 9, 2, 8, 3, 7, 4, 6, 5, 5 };
 
-	@SuppressWarnings("static-access")
-	public static void main(String[] args) throws PriorityQueueFullException, PriorityQueueEmptyException {
+	public static void main(String[] args) {
+        List<Integer> numbers = new ArrayList<>(List.of(INT_FIXTURE));
 
-//		HeapPriorityQueue<Integer> heap = new HeapPriorityQueue<Integer>(7);
-//		for (Integer integer : INT_FIXTURE) {
-//			heap.enqueue(integer);
-//		}
-		
-		List<Integer> testList = new ArrayList<>();
-		for (Integer integer : INT_FIXTURE) {
-			testList.add(integer);
-		}
-		
-		HeapSorter heapSorter = new HeapSorter();
-		
-		heapSorter.sort(testList);
-		System.out.println(testList);
-	}
+        try {
+        	System.out.println("Non-sorted List: " +  numbers);
+            List<Integer> sortedNumbers = HeapSorter.sort(numbers);
+            System.out.println("Sorted List: " + sortedNumbers);
+        } catch (PriorityQueueFullException | PriorityQueueEmptyException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

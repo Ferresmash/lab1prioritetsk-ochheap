@@ -12,9 +12,8 @@ public class HeapSorter {
 		for (T t : inputList) {
 			heap.enqueue(t);
 		}
-		for (int i = 0; i < heap.size(); i++) {
-			sortedList.add(heap.getFront());
-			heap.dequeue();
+		while(!heap.isEmpty()) {
+			sortedList.add(heap.dequeue());
 		}
 		return sortedList;
 	}
