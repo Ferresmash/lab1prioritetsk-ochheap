@@ -1,7 +1,7 @@
 package se.hig.aod.lab1;
 
 @SuppressWarnings("serial")
-public class PriorityQueueFullException extends Exception {
+public class PriorityQueueFullException extends RuntimeException {
 
 	/*
 	 * A constructor that takes a message about which error has been generated. This
