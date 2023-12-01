@@ -18,6 +18,7 @@ class HeapPriorityQueueTest {
 
 	HeapPriorityQueue<Integer> nonEmptyQueue;
 	HeapPriorityQueue<Integer> emptyQueue;
+	
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -73,6 +74,13 @@ class HeapPriorityQueueTest {
 	@Test
 	void testGetFront() throws PriorityQueueEmptyException {
 		assertEquals(9, nonEmptyQueue.getFront());
+	}
+	
+	@Test
+	void testDequeueWholeQueue() {
+		for (Integer integer : INT_FIXTURE) {
+			nonEmptyQueue.dequeue();
+		}
 	}
 	
 	

@@ -51,11 +51,11 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	private int leftChild(int currentIndex) {
-		return (currentIndex + 1) * 2;
+		return (currentIndex) * 2;
 	}
 
 	private int rightChild(int currentIndex) {
-		return (currentIndex + 2) * 2;
+		return (currentIndex + 1) * 2;
 	}
 
 	private void reHeapUp(int currentIndex) {
@@ -71,10 +71,10 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	private void reHeapDown(int currentIndex) {
-		if (leftChild(currentIndex) > maxSize) {
+		if (leftChild(currentIndex) >= size) {
 			return;
 		}
-		if (heap[rightChild(currentIndex)] == null) {
+		if (rightChild(currentIndex) >= size) {
 			if (heap[currentIndex].compareTo(heap[leftChild(currentIndex)]) < 0) {
 				T temp = heap[leftChild(currentIndex)];
 				heap[leftChild(currentIndex)] = heap[currentIndex];
