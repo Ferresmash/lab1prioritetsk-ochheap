@@ -3,7 +3,7 @@ package se.hig.aod.lab1;
 /**
  * A static heap implementation of a priority queue for elements of type T.
  * 
- * @author xxxx
+ * @author Ferdinand Öhrn
  * 
  * @param <T> Data type of elements stored in the queue.
  */
@@ -31,6 +31,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	/**
+	 * 
 	 * Method that is specific for a static implementation of the heap, checks if
 	 * the underlying array is full.
 	 * 
@@ -46,55 +47,90 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	}
 
 	private int parent(int currentIndex) {
-		// TODO
-		return 0;
+		return (currentIndex) / 2;
 	}
 
 	private int leftChild(int currentIndex) {
-		// TODO
-		return 0;
+		return (currentIndex + 1) * 2;
 	}
 
 	private int rightChild(int currentIndex) {
-		// TODO
-		return 0;
+		return (currentIndex + 2) * 2;
 	}
 
 	private void reHeapUp(int currentIndex) {
-		// TODO Recursive implementation
+		if (parent(currentIndex) < 0) {
+			return;
+		}
+		if (heap[currentIndex].compareTo(heap[parent(currentIndex)]) > 0) {
+			T temp = heap[parent(currentIndex)];
+			heap[parent(currentIndex)] = heap[currentIndex];
+			heap[currentIndex] = temp;
+			reHeapUp(parent(currentIndex));
+		}
 	}
 
 	private void reHeapDown(int currentIndex) {
-		// TODO Recursive implementation
+		if(leftChild(currentIndex) > maxSize) {
+			return;
+		}
+		if(heap[rightChild(currentIndex)] == null) {
+			if(heap[currentIndex].compareTo(heap[leftChild(currentIndex)]) < 0) {
+				T temp = heap[leftChild(currentIndex)];
+				heap[leftChild(currentIndex)] = heap[currentIndex];
+				heap[currentIndex] = temp;
+				reHeapDown(leftChild(currentIndex));
+			}
+			return;
+		}
+		if(heap[leftChild(currentIndex)].compareTo(heap[rightChild(currentIndex)]) > 0) {
+			if(heap[currentIndex].compareTo(heap[leftChild(currentIndex)]) < 0) {
+				T temp = heap[leftChild(currentIndex)];
+				heap[leftChild(currentIndex)] = heap[currentIndex];
+				heap[currentIndex] = temp;
+				reHeapDown(leftChild(currentIndex));
+			}
+		}else {
+			if(heap[currentIndex].compareTo(heap[rightChild(currentIndex)]) < 0) {
+				T temp = heap[rightChild(currentIndex)];
+				heap[rightChild(currentIndex)] = heap[currentIndex];
+				heap[currentIndex] = temp;
+				reHeapDown(rightChild(currentIndex));
+			}
+		}
 	}
 
 	@Override
-	public void enqueue(T newElement) {
+	public void enqueue(T newElement) throws PriorityQueueFullException {
 		if (isFull()) {
 			throw new PriorityQueueFullException("Heap is full!");
 		}
+		heap[size] = newElement;
+		reHeapUp(size);
 		size++;
 		// TODO Code that inserts the new element at the last position in the array
 		// TODO reHeapUp for new node
 	}
 
 	@Override
-	public T dequeue() {
+	public T dequeue() throws PriorityQueueFullException, PriorityQueueEmptyException {
 		if (isEmpty()) {
 			throw new PriorityQueueEmptyException("Cannot dequeue empty Queue!");
 		} else {
 			T dequeuedElement = heap[0];// the root element of the heap
-
 			// TODO Code that moves the last element in the heap to the root of the heap
+			heap[0] = heap[size-1];
+			heap[size-1] = null;
 			size--;
 			// TODO reHeapDown for the new root of the heap
-
+			reHeapDown(0);
+			
 			return dequeuedElement;
 		}
 	}
 
 	@Override
-	public T getFront() {
+	public T getFront() throws PriorityQueueEmptyException {
 		if (isEmpty()) {
 			throw new PriorityQueueEmptyException("Cannot get front of empty Queue!");
 		} else {
@@ -110,4 +146,5 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 		}
 		return stringRepresentation;
 	}
+
 }

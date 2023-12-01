@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
  */
 class HeapPriorityQueueTest {
 
-	static final Integer[] INT_FIXTURE = {}; // TODO fill with random integers
+	static final Integer[] INT_FIXTURE = {1,9,2,8,3,7,4,6,5,5};
 
 	HeapPriorityQueue<Integer> nonEmptyQueue;
 	HeapPriorityQueue<Integer> emptyQueue;
@@ -47,6 +47,35 @@ class HeapPriorityQueueTest {
 		assertTrue(emptyQueue.isEmpty(), "emptyQueue should be empty after clear");
 	}
 
+	@Test
+	void testIsEmpty(){
+		assertFalse(nonEmptyQueue.isEmpty(),"intQueue should not be empty from start");
+		assertTrue(emptyQueue.isEmpty(),"emptyQueue should be empty from start");
+	}
+	
+	@Test
+	void testEnqueue() throws PriorityQueueFullException, PriorityQueueEmptyException {
+		int size = emptyQueue.size();
+		assertEquals(size, emptyQueue.size());
+		Integer nbr = 1;
+		emptyQueue.enqueue(nbr);
+		assertEquals(size+1, emptyQueue.size());
+	}
+	
+	@Test
+	void testDequeue() throws PriorityQueueFullException, PriorityQueueEmptyException {
+		int size = nonEmptyQueue.size();
+		assertEquals(size, nonEmptyQueue.size());
+		nonEmptyQueue.dequeue();
+		assertEquals(size-1, nonEmptyQueue.size());
+	}
+	
+	@Test
+	void testGetFront() throws PriorityQueueEmptyException {
+		assertEquals(9, nonEmptyQueue.getFront());
+	}
+	
+	
 	// TODO ADD MORE TESTS
 	/*
 	 * 

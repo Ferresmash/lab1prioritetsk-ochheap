@@ -26,16 +26,18 @@ public interface PriorityQueue<T> {
 	 * Inserts an element in the queue
 	 * 
 	 * @param t an element to be put in the queue
+	 * @throws PriorityQueueFullException 
 	 */
-	public void enqueue(T t);
+	public void enqueue(T t) throws PriorityQueueFullException;
 
 	/**
 	 * Removes the element at the front of the queue
 	 * 
 	 * @return The element at the front of the queue
+	 * @throws PriorityQueueFullException 
 	 * @throws PriorityQueueEmptyException if queue is empty
 	 */
-	public T dequeue();
+	public T dequeue() throws PriorityQueueFullException, PriorityQueueEmptyException;
 
 	/**
 	 * Returns the size of the queue
@@ -50,5 +52,5 @@ public interface PriorityQueue<T> {
 	 * @return The element at the front of the queue
 	 * @throws PriorityQueueEmptyException if queue is empty
 	 */
-	public T getFront();
+	public T getFront() throws PriorityQueueEmptyException;
 }
