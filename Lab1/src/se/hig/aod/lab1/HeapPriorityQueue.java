@@ -7,7 +7,7 @@ package se.hig.aod.lab1;
  * 
  * @param <T> Data type of elements stored in the queue.
  */
-public class HeapPriorityQueue<T extends Comparable<? super T>> implements PriorityQueue<T> {
+public class HeapPriorityQueue<T extends Comparable<? super T>> implements PriorityQueue<T>  {
 
 	private T[] heap;
 	private int size;
@@ -18,6 +18,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 		clear();
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {

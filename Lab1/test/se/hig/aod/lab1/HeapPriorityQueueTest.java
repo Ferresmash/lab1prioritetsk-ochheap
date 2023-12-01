@@ -8,9 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * xxxxxx
+ * JUnit testing for heapPriorityQueue
  * 
- * @author xxxx
+ * @author Ferdinand Öhrn
  */
 class HeapPriorityQueueTest {
 
