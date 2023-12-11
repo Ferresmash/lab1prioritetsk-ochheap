@@ -176,7 +176,7 @@ public class HeapPriorityQueue<T extends Comparable<? super T>> implements Prior
 	@Override
 	public T dequeue() throws PriorityQueueEmptyException {
 		if (isEmpty()) {
-			throw new IllegalStateException("Heap is empty");
+			throw new PriorityQueueEmptyException("Heap is empty");
 		}
 
 		T root = heap[0];
