@@ -123,7 +123,7 @@ class HeapPriorityQueueTest {
      */
 	@Test
 	void testDequeueWholeQueue() throws PriorityQueueEmptyException {
-		for (Integer integer : INT_FIXTURE) {
+		for (@SuppressWarnings("unused") Integer integer : INT_FIXTURE) {
 			nonEmptyQueue.dequeue();
 		}
 	}
